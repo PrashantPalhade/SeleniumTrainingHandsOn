@@ -8,14 +8,14 @@ public class ScientificCalculator implements Operations, ScientificOperations {
 
     public double sqrRoot(double no1) {
         double sqrt = Math.sqrt(no1);
-        print("Square root of" + no1 + " is :" + sqrt);
+        print("Square root of ::   " + no1 + " is :: " + sqrt);
         return sqrt;
 
     }
 
     public double sqrRoot(int no1) {
         double sqrt = Math.sqrt(no1);
-        print("Square root of" + no1 + " is :" + sqrt);
+        print("Square root of integer no " + no1 + " is :" + sqrt);
         return sqrt;
 
     }

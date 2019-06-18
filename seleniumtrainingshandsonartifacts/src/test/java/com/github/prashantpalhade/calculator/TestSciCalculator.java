@@ -7,7 +7,9 @@ public class TestSciCalculator {
     @Test
     void testSqrRoot() {
         ScientificCalculator sciCalObj = new ScientificCalculator();
-        int result = sciCalObj.sqrRoot(9);
+        double result = sciCalObj.sqrRoot(9);
+      // sciCalObj.print("Printing SqrRoot ======   "+ result);
+        Assert.assertEquals(result, 3.0);
 
-        Assert.assertEquals(result,3);
+    }
 }
