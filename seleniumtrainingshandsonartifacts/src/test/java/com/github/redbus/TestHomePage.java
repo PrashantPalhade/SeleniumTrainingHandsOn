@@ -2,6 +2,7 @@ package com.github.redbus;
 
 import com.github.redbus.base.TestBase;
 import com.github.redbus.page.HomePage;
+import com.google.common.util.concurrent.AbstractScheduledService;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,21 +12,28 @@ public class TestHomePage extends TestBase {
     HomePage hp;
 
     @BeforeMethod
-    public void setUp(){
+    public void setUp() {
         initialize();
         hp = new HomePage();
     }
+
     @AfterMethod
-    public void tearDown(){
+    public void tearDown() {
         driver.close();
     }
 
-    @Test
-    public void testVerifyHomepageLogo(){
-        Assert.assertEquals(true,hp.verifyRedBusLogo());
+   @Test
+    public void testVerifyHomepageLogo() {
+        Assert.assertEquals(true, hp.verifyRedBusLogo());
     }
+
     @Test
-    public void testverifyRedBusTitle(){
-        Assert.assertEquals("test",hp.verifyRedBusTitle());
+    public void testverifyRedBusTitle() {
+        Assert.assertEquals("test", hp.verifyRedBusTitle());
+    }
+
+    @Test
+    public void testverifyRedBusFlagInd() {
+       hp.clickOnIndianFlag();
     }
 }

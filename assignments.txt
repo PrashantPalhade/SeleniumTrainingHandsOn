@@ -1,0 +1,31 @@
+         abstract preson
+mob no
+name
+abstract method 1()
+
+ 
+student      faculity 
+stid		ful_id
+method1()
+{
+	print();
+}
+
+
+students extends person
+{
+
+
+}
+
+
+//*[contains(text(),'What are')]//parent::*
+
+//*[@class='bodycont']//div[@class='heroimg']
+
+//*[@class='abouttitle']
+
+//*[@class='ctitle']
+
+how to trigger test cases with TestNG.xml {via maven & rt click}
+

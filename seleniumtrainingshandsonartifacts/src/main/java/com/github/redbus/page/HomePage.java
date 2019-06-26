@@ -1,5 +1,4 @@
 package com.github.redbus.page;
-
 import com.github.redbus.base.TestBase;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -19,6 +18,9 @@ public class HomePage extends TestBase {
     @FindBy(xpath = "//img[@title='redBus India']")
     WebElement flagIndia;
 
+    @FindBy(xpath = "//img[@title='redBus Singapore']")
+    WebElement flagSGP;
+
     public HomePage() {
         PageFactory.initElements(driver, this);
     }
@@ -36,7 +38,13 @@ public class HomePage extends TestBase {
     }
 
     public void clickOnIndianFlag() {
+
         flagIndia.click();
+        String test = flagIndia.getText();
+        System.out.println("Print "+test);
+    }
+    public void clickOnSGPFlag() {
+        flagSGP.click();
     }
 
 }
