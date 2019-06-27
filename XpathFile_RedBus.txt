@@ -1,0 +1,19 @@
+Logo on redBus Homepage 
+
+@FindBy(xpath = "//header[@id='rh_header']//a[@class='redbus-logo home-redirect']")
+WebElement redBusInLogo;
+
+@FindBy(xpath ="//input[@id='src']")
+WebElement FromSource;
+
+@FindBy("//input[@id='dest']")
+WebElement ToDestinaion;
+
+@FindBy("//label[@class='db text-trans-uc']")
+WebElement TravelDate;
+
+@FindBy("//label[@class='db text-trans-uc tal']")
+WebElement ReturnDate;
+
+@FindBy("//button[@id='search_btn']")
+WebElement btnSearchBus;
