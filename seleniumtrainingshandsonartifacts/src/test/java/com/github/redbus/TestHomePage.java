@@ -22,18 +22,30 @@ public class TestHomePage extends TestBase {
         driver.close();
     }
 
-   @Test
+    @Test
     public void testVerifyHomepageLogo() {
         Assert.assertEquals(true, hp.verifyRedBusLogo());
     }
 
     @Test
     public void testverifyRedBusTitle() {
-        Assert.assertEquals("test", hp.verifyRedBusTitle());
+        Assert.assertEquals("We'll Take You Places!", hp.verifyRedBusTitle());
     }
 
     @Test
     public void testverifyRedBusFlagInd() {
-       hp.clickOnIndianFlag();
+        hp.clickOnIndianFlag();
+
     }
+
+    @Test
+    public void clickOnSGPFlag() {
+        hp.clickOnSGPFlag();
+    }
+
+    @Test
+    public void verifyCountriesWeOperate() {
+        hp.verifyCountriesWeOperate();
+    }
+
 }
