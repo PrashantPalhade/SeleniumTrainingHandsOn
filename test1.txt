@@ -2,3 +2,41 @@ https://www.journaldev.com/1582/abstract-class-in-java
 
 Test NG - Trainig Site // TestNG Tutorials
 https://howtodoinjava.com/java-testng-tutorials/
+
+
+Error message for code  below ///
+
+Exception in thread "main" java.lang.NoClassDefFoundError: okio/BufferedSource
+	at okhttp3.internal.Util.<clinit>(Util.java:60)
+	at okhttp3.ConnectionPool.<clinit>(ConnectionPool.java:52)
+	at org.openqa.selenium.remote.internal.OkHttpClient$Factory.<init>(OkHttpClient.java:116)
+	at org.openqa.selenium.remote.http.HttpClient$Factory.createDefault(HttpClient.java:66)
+	at org.openqa.selenium.remote.HttpCommandExecutor.<clinit>(HttpCommandExecutor.java:47)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:181)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:168)
+	at org.openqa.selenium.chrome.ChromeDriver.<init>(ChromeDriver.java:123)
+	at com.prashantpalhade.initialise.main(initialise.java:12)
+Caused by: java.lang.ClassNotFoundException: okio.BufferedSource
+	at java.net.URLClassLoader.findClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	at sun.misc.Launcher$AppClassLoader.loadClass(Unknown Source)
+	at java.lang.ClassLoader.loadClass(Unknown Source)
+	... 9 more
+ ==================************************=============================
+ package com.prashantpalhade;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class initialise {
+	public static void main(String[] args) {
+		
+				
+		System.setProperty("webdriver.chrome.driver", "C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe");
+		WebDriver driver = new ChromeDriver();              
+        driver.get("http://www.google.com");
+	}
+}
+
+  
+  
