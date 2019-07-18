@@ -13,6 +13,7 @@ method1()
 
 Extend Reports : URL
 https://www.seleniumeasy.com/selenium-tutorials/extent-reports-using-testng-listeners
+https://www.swtestacademy.com/extentreports-testng/
 
 
 
