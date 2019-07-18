@@ -11,12 +11,9 @@ method1()
 	print();
 }
 
+Extend Reports : URL
+https://www.seleniumeasy.com/selenium-tutorials/extent-reports-using-testng-listeners
 
-students extends person
-{
-
-
-}
 
 
 //*[contains(text(),'What are')]//parent::*
