@@ -59,26 +59,40 @@ public class HomePage extends TestBase {
         return countriesWeOperate.getText();
     }
 
-    public void clickOnIndianFlag() {
+    public String clickOnIndianFlag() {
+        String indWndURL = "";
         String parentGUID = driver.getWindowHandle();
         flagIndia.click();
-        String test = flagIndia.getText();
         Set allGUIDofWnd = driver.getWindowHandles();
-        for (Object strtGUid : allGUIDofWnd) {
-            if(!strtGUid.equals(parentGUID))
+       // System.out.println("NumberOfWindows " + allGUIDofWnd);
+
+        for (Object strtGUid : allGUIDofWnd)
+        {
+            if (!strtGUid.equals(parentGUID))
             {
-               String currURL = driver.getCurrentUrl();
+
+                indWndURL = driver.switchTo().window((String) strtGUid).getCurrentUrl();
                 String CurrWndTitle = driver.getTitle();
-                System.out.println("Child GUID " + strtGUid);
+/*              System.out.println("Wnd GUID " + strtGUid);
+                System.out.println("New Page URL:" + currURL);
+                System.out.println("Current Page URL:" + newWndURL);
+                System.out.println("Window Name:" + CurrWndTitle);*/
             }
         }
-        System.out.println("Print " + test);
+        return indWndURL;
     }
 
-    public void clickOnSGPFlag() {
+    public String clickOnSGPFlag() {
+        String sgpWndURL ="";
         flagSGP.click();
-        String test = flagIndia.getText();
-        System.out.println("Print " + test);
+        String strParentWndHndl = driver.getWindowHandle();
+
+        Set allWndHandels = driver.getWindowHandles();
+        for (Object strStrtHndl :allWndHandels) {
+            if(!strStrtHndl.equals(strParentWndHndl))
+               sgpWndURL= driver.switchTo().window((String)strStrtHndl).getCurrentUrl();
+        }
+        return sgpWndURL;
     }
 
 }

@@ -20,32 +20,40 @@ public class TestHomePage extends TestBase {
     @AfterMethod
     public void tearDown() {
         driver.close();
+        driver.quit();
     }
 
-    @Test
+  @Test
     public void testVerifyHomepageLogo() {
         Assert.assertEquals(true, hp.verifyRedBusLogo());
     }
 
     @Test
-    public void testverifyRedBusTitle() {
+    public void testVerifyRedBusTitle() {
         Assert.assertEquals("We'll Take You Places!", hp.verifyRedBusTitle());
     }
 
     @Test
-    public void testverifyRedBusFlagInd() {
-        hp.clickOnIndianFlag();
+    public void testVerifyRedBusFlagIndNavigate() {
+        String returnClickInd = hp.clickOnIndianFlag();
+        System.out.println("URL Redbus Ind  :"+returnClickInd);
+        Assert.assertEquals("https://www.redbus.in/",returnClickInd);
+      //  hp.clickOnIndianFlag();
 
     }
 
     @Test
-    public void clickOnSGPFlag() {
-        hp.clickOnSGPFlag();
-    }
+    public void testVerifySGPFlagNavigate() {
+     //   hp.clickOnSGPFlag();
+        String returnClickonSGP = hp.clickOnSGPFlag();
+        Assert.assertEquals("https://www.redbus.sg/",returnClickonSGP);
 
+        System.out.print("SGP Flag"+returnClickonSGP);
+    }
+/*
     @Test
     public void verifyCountriesWeOperate() {
         hp.verifyCountriesWeOperate();
     }
-
+*/
 }
