@@ -1,0 +1,117 @@
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+public class ReadExcelFile {
+
+    private static String AUTOMATION_SCRIPT_NAME = "ICRM_AddPatnerindividualPart";
+
+    private boolean validRow = false;
+
+    private List<List<String>> readExcel(String filePath, String fileName, String sheetName) throws IOException {
+        List<List<String>> rowList = new ArrayList<>();
+
+        File file = new File(filePath + "//" + fileName);
+        FileInputStream inputStream = new FileInputStream(file);
+
+        // Get workbook extension
+        Workbook workbook = null;
+        String fileExtensionName = fileName.substring(fileName.indexOf("."));
+        if (fileExtensionName.equals(".xlsx")) {
+            workbook = new XSSFWorkbook(inputStream);
+        } else if (fileExtensionName.equals(".xls")) {
+            workbook = new HSSFWorkbook(inputStream);
+        }
+
+        // Get sheet name
+        Sheet sheet = workbook.getSheet(sheetName);
+
+        DataFormatter dataFormatter = new DataFormatter();
+
+        // Get rows
+        Iterator<Row> rowIterator = sheet.rowIterator();
+        while (rowIterator.hasNext()) {
+            List<String> rowValues = new ArrayList<>();
+            Row row = rowIterator.next();
+
+            if (!checkIfRowIsEmpty(row)) {
+                Iterator<Cell> cellIterator = row.cellIterator();
+
+                // Get cell
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+                    String cellValue = dataFormatter.formatCellValue(cell);
+                    // check for the required cell
+                    if (checkCellContainsAutomationScriptName(cellValue) || validRow) {
+                        rowValues.add(cellValue);
+                    }
+                }
+                // Get the required rows
+                if (!rowValues.isEmpty()) {
+                    rowList.add(rowValues);
+                }
+            }
+            validRow = false;
+        }
+
+        return rowList;
+    }
+
+    private boolean checkIfRowIsEmpty(Row row) {
+        if (row == null) {
+            return true;
+        }
+        if (row.getLastCellNum() <= 0) {
+            return true;
+        }
+        for (int cellNum = row.getFirstCellNum(); cellNum < row.getLastCellNum(); cellNum++) {
+            Cell cell = row.getCell(cellNum);
+            if (cell != null && cell.getCellType() != CellType.BLANK &&
+                    StringUtils.isNotBlank(cell.toString())) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkCellContainsAutomationScriptName(String value) {
+        if (value.equals(AUTOMATION_SCRIPT_NAME)) {
+            validRow = true;
+            return true;
+        }
+        return false;
+    }
+
+    public static void main(String... strings) throws IOException {
+        List<List<String>> rowList = null;
+        ReadExcelFile objExcelFile = new ReadExcelFile();
+        String filePath = System.getProperty("user.dir");
+        rowList = objExcelFile.readExcel(filePath, "TestSheet.xlsx", "Sheet1");
+
+        for (List<String> list : rowList) {
+            HP_ALM_EXPORT(list.get(2), list.get(3), list.get(4));
+        }
+
+//        for (List<String> list : rowList) {
+//            for(String values: list){
+//                System.out.print(values);
+//            }
+//            System.out.println();
+//        }
+
+    }
+
+    private static void HP_ALM_EXPORT(String testCase, String status, String screenshots) {
+        System.out.println("Exporting... " + testCase + " " + status + " " + screenshots);
+    }
+
+}
